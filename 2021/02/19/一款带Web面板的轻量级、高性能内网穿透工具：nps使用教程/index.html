@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/muzihuaner/huangeimages/raw/master/img/QQ%E5%9B%BE%E7%89%8720200313211336.jpg">
+  <link rel="icon" href="https://gitee.com/muzihuaner/huangeimages/raw/master/img/QQ%E5%9B%BE%E7%89%8720200313211336.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="点滴记忆：你知道的越多，你不知道的越多。">
+  
+  <meta name="author" content="木子欢儿">
+  <meta name="keywords" content="欢哥,欢哥科技,木子欢儿,技术分享，免费资源，影视资源，活动资源，薅羊毛，软件分享">
+  
+  <title>一款带Web面板的轻量级、高性能内网穿透工具：nps使用教程 - 点滴记忆</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.quickso.cn","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":21062591,"cnzz":null,"leancloud":{"app_id":"vCSfhscKm7pmw1cq1x3LTIMN-gzGzoHsz","app_key":"dztAP0R9o4XPmG8S66HGeHc7","server_url":"https://vcsfhsck.lc-cn-n1-shared.com"}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="点滴记忆" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>点滴记忆</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss-fill"></i>
+                Rss
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                项目
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://quickso.cn">
+                    
+                    快点搜
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://huangenet.cn">
+                    
+                    欢哥互联
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://zhiurl.cn">
+                    
+                    知链短链
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://api.btstu.cn/sjbz/api.php?lx=dongman&format=images') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="一款带Web面板的轻量级、高性能内网穿透工具：nps使用教程">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-19 09:07" pubdate>
+        2021年2月19日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">一款带Web面板的轻量级、高性能内网穿透工具：nps使用教程</h1>
+            
+            <div class="markdown-body">
+              <p><img src="https://gitee.com/muzihuaner/huangeimages/raw/master/img/20210219090820.png" srcset="/img/loading.gif"></p>
+<p><a target="_blank" rel="noopener" href="https://www.iowen.cn/tag/neiwangchuantou/">内网穿透</a>工具有不少了，比如Frp、lanproxy、Holer等，现在再介绍个带Web面板的穿透工具nps，之前叫easyProxy，只是改名了而已，该工具是一款使用go语言编写的轻量级、功能强大的内网穿透服务器。支持tcp、udp流量转发，支持内网http、socks5代理，同时支持snappy压缩(节省带宽和流量)、站点保护、加密传输、多路复用、header修改等。同时还支持web图形化管理。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Github地址：<a target="_blank" rel="noopener" href="https://github.com/cnlh/nps">https://github.com/cnlh/nps</a></p>
+<p>通常内网穿透工具都有服务端和客户端，安装要求如下：</p>
+<p>服务端：需要安装在一个有公网IP的服务器上，系统为Linux/<a target="_blank" rel="noopener" href="https://www.iowen.cn/tag/windows/">Windows</a>/Mac均可。<br>客户端：一般安装在一个内网的VPS服务器或Windows/Mac电脑上使用。</p>
+<h4 id="1、编译安装"><a href="#1、编译安装" class="headerlink" title="1、编译安装"></a>1、编译安装</h4><p>提示：编译安装主要讲的Linux系统，其它系统(Win/Mac，也包括Linux)建议直接使用作者编译好的文件即可。<br>安装Go语言：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go">#Debian/Ubuntu系统<br>apt-get -y install golang<br>#创建目录并定义GOPATH环境变量指向该目录<br>mkdir ~/workspace<br>echo <span class="hljs-string">&#x27;export GOPATH=&quot;$HOME/workspace&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br>source ~/.bashrc<br><br>#CentOS/RHEL系统<br>yum -y install golang<br>#创建目录并定义GOPATH环境变量指向该目录。<br>mkdir ~/workspace<br>echo <span class="hljs-string">&#x27;export GOPATH=&quot;$HOME/workspace&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br>source ~/.bashrc<br></code></pre></td></tr></table></figure>
+<p>安装git：</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta">#Debian/Ubuntu系统</span><br>apt-<span class="hljs-keyword">get</span> -y install git<br><br><span class="hljs-meta">#CentOS/RHEL系统</span><br>yum -y install git<br></code></pre></td></tr></table></figure>
+<p>安装源码：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">go</span> <span class="hljs-built_in">get</span> github.<span class="hljs-keyword">com</span>/cnlh/nps<br></code></pre></td></tr></table></figure>
+<p>编译服务端和客户端：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#进入指定目录</span><br>cd ~<span class="hljs-regexp">/workspace/</span>src<span class="hljs-regexp">/github.com/</span>cnlh/nps<br><span class="hljs-comment">#编译服务端</span><br>go build cmd<span class="hljs-regexp">/nps/</span>nps.go<br><span class="hljs-comment">#编译客户端</span><br>go build cmd<span class="hljs-regexp">/npc/</span>npc.go<br></code></pre></td></tr></table></figure>
+<p>编译好了后，就会在当前目录生成npc或nps二进制文件了，就可以直接拿来用了。</p>
+<p>编译的时候可能出现的问题解决方法：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs gradle">#只拿一种常见的错误做例子，有时候可能会出现很多种这样的提示<br>lib<span class="hljs-regexp">/kcp/</span>crypt.go:<span class="hljs-number">14</span>:<span class="hljs-number">2</span>: cannot <span class="hljs-keyword">find</span> <span class="hljs-keyword">package</span> <span class="hljs-string">&quot;golang.org/x/crypto/pbkdf2&quot;</span> in <span class="hljs-keyword">any</span> of:<br>    <span class="hljs-regexp">/usr/</span>lib<span class="hljs-regexp">/go-1.7/</span>src<span class="hljs-regexp">/golang.org/</span>x<span class="hljs-regexp">/crypto/</span>pbkdf2 (<span class="hljs-keyword">from</span> $GOROOT)<br>    <span class="hljs-regexp">/root/</span>workspace<span class="hljs-regexp">/src/g</span>olang.org<span class="hljs-regexp">/x/</span>crypto/pbkdf2 (<span class="hljs-keyword">from</span> $GOPATH)<br><br>#意思是缺少这种包，然后记住提示的地址，比如上面的golang.org<span class="hljs-regexp">/x/</span>crypto/pbkdf2，有时候也会提示的github地址。<br><br>然后再使用命令go get golang.org<span class="hljs-regexp">/x/</span>crypto/pbkdf2命令安装一下就行了。<br></code></pre></td></tr></table></figure>
+<h4 id="2、直接安装"><a href="#2、直接安装" class="headerlink" title="2、直接安装"></a>2、直接安装</h4><p>除了自己编译外，作者也直接提供了编译好的文件给你使用，文件下载地址：点击进去，然后再根据自己的系统架构下载对应的最新版服务端和客户端。</p>
+<p>如果对于Linux服务器还是不知道怎么选择的，这里拿Vultr、搬瓦工大多数VPS为例。先使用命令getconf LONG_BIT获取系统版本，32位就选386，64就选amd64，具体还是以实际情况为准。</p>
+<h3 id="服务端使用"><a href="#服务端使用" class="headerlink" title="服务端使用"></a>服务端使用</h3><p>这里博主使用的是Vultr Linux x64服务器，直接使用命令：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#记得复制前先将下面链接替换成当前最新版地址</span><br>cd ~<br><span class="hljs-comment">#下载并解压服务端</span><br>wget https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/cnlh/</span>nps<span class="hljs-regexp">/releases/</span>download<span class="hljs-regexp">/v0.0.14/</span>linux_amd64_server.tar.gz &amp;&amp; tar zxvf linux_amd64_server.tar.gz<br><span class="hljs-comment">#编辑配置文件</span><br>cd nps<br>nano conf/nps.conf<br></code></pre></td></tr></table></figure>
+<p>配置文件参数如下：</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta">#web管理端口</span><br>httpport<br><span class="hljs-meta">#web界面管理密码</span><br>password<br><span class="hljs-meta">#服务端客户端通信端口</span><br>bridePort<br><span class="hljs-meta">#ssl certFile绝对路径</span><br>pemPath<br><span class="hljs-meta">#ssl keyFile绝对路径</span><br>keyPath<br><span class="hljs-meta">#域名代理https代理监听端口</span><br>httpsProxyPort<br><span class="hljs-meta">#域名代理http代理监听端口</span><br>httpProxyPort<br><span class="hljs-meta">#web api免验证IP地址</span><br>authip<br><span class="hljs-meta">#客户端与服务端连接方式kcp或tcp</span><br>bridgeType<br></code></pre></td></tr></table></figure>
+<p>然后启动服务端：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">./nps <span class="hljs-literal">start</span><br><br><span class="hljs-comment">#重启/停止服务端</span><br>./nps <span class="hljs-literal">stop</span>|restart<br></code></pre></td></tr></table></figure>
+<p>然后打开地址<a href="http://ip:8080访问管理界面，具体端口以自己修改的为准，再使用密码登录进去，默认为123。">http://ip:8080访问管理界面，具体端口以自己修改的为准，再使用密码登录进去，默认为123。</a></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#如果打不开Web界面，就需要开启防火墙，一般CentOS系统出现情况最多</span><br><span class="hljs-comment">#Centos 6系统</span><br>iptables -I INPUT -p tcp --dport 8080 -j ACCEPT<br>service iptables save<br>service iptables restart<br><br><span class="hljs-comment">#CentOS 7系统</span><br>firewall-cmd <span class="hljs-attribute">--zone</span>=public <span class="hljs-attribute">--add-port</span>=8080/tcp --permanent <br>firewall-cmd --reload<br></code></pre></td></tr></table></figure>
+<p>对于有些服务器，比如阿里云，谷歌云等，还需要在服务器管理面板上开放Web端口才行。</p>
+<h3 id="客户端使用"><a href="#客户端使用" class="headerlink" title="客户端使用"></a>客户端使用</h3><h4 id="1、Linux系统"><a href="#1、Linux系统" class="headerlink" title="1、Linux系统"></a>1、Linux系统</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#比如下载的客户端文件在根目录，先进入根目录</span><br>cd ~<br><span class="hljs-comment">#启动客户端，比如服务端公网IP为1.1.1.1，服务端配置文件中tcpport为8284</span><br>./npc <span class="hljs-attribute">-server</span>=1.1.1.1:8284 <span class="hljs-attribute">-vkey</span>=客户端的密钥<br></code></pre></td></tr></table></figure>
+<h4 id="2、Windows系统"><a href="#2、Windows系统" class="headerlink" title="2、Windows系统"></a>2、Windows系统</h4><p>首先按住Win+R，输入cmd进入命令窗口，然后使用命令：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment">#比如下载的客户端文件在D盘，先进入到D盘</span><br>cd /d d:<br><span class="hljs-comment">#启动客户端，比如服务端公网IP为1.1.1.1，服务端配置文件中tcpport为8284</span><br>npc.exe <span class="hljs-attribute">-server</span>=1.1.1.1:8284 <span class="hljs-attribute">-vkey</span>=客户端的密钥<br></code></pre></td></tr></table></figure>
+<p>至于Mac系统启动参考上面就行。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>关于使用场景，Github文档写的很清楚了，这里大概的说下</p>
+<h4 id="1、tcp隧道模式"><a href="#1、tcp隧道模式" class="headerlink" title="1、tcp隧道模式"></a>1、tcp隧道模式</h4><p>适用：想在外网通过ssh连接内网的机器，做云服务器到内网服务器端口的映射，或者做微信公众号开发、小程序开发等。</p>
+<h4 id="2、udp隧道模式"><a href="#2、udp隧道模式" class="headerlink" title="2、udp隧道模式"></a>2、udp隧道模式</h4><p>适用：在非内网环境下使用内网dns，或者需要通过udp访问内网机器等。</p>
+<h4 id="3、http代理模式"><a href="#3、http代理模式" class="headerlink" title="3、http代理模式"></a>3、http代理模式</h4><p>适用：在外网使用HTTP代理访问内网站点。</p>
+<h4 id="4、socks5代理模式"><a href="#4、socks5代理模式" class="headerlink" title="4、socks5代理模式"></a>4、socks5代理模式</h4><p>适用：搭建一个内网穿透55，在外网如同使用内网v皮n一样访问内网资源或者设备。</p>
+<h3 id="相关功能"><a href="#相关功能" class="headerlink" title="相关功能"></a>相关功能</h3><h4 id="1、数据压缩支持"><a href="#1、数据压缩支持" class="headerlink" title="1、数据压缩支持"></a>1、数据压缩支持</h4><p>由于是内网穿透，内网客户端与服务端之间的隧道存在大量的数据交换，为节省流量，加快传输速度，由此本程序支持SNNAPY形式的压缩。</p>
+<p>所有模式均支持数据压缩，可以与加密同时使用<br>开启此功能会增加cpu和内存消耗<br>在server端加上参数-compress=snappy(或在web管理中设置)</p>
+<h4 id="2、加密传输"><a href="#2、加密传输" class="headerlink" title="2、加密传输"></a>2、加密传输</h4><p>如果公司内网防火墙对外网访问进行了流量识别与屏蔽，例如禁止了ssh协议等，通过设置配置文件，将服务端与客户端之间的通信内容加密传输，将会有效防止流量被拦截。</p>
+<p>开启此功能会增加cpu和内存消耗<br>在server端加上参数-crypt=true(或在web管理中设置)</p>
+<h4 id="3、站点保护"><a href="#3、站点保护" class="headerlink" title="3、站点保护"></a>3、站点保护</h4><p>域名代理模式所有客户端共用一个http服务端口，在知道域名后任何人都可访问，一些开发或者测试环境需要保密，所以可以设置用户名和密码，nps将通过Http Basic Auth来保护，访问时需要输入正确的用户名和密码。</p>
+<p>web管理中可配置</p>
+<h4 id="4、host修改"><a href="#4、host修改" class="headerlink" title="4、host修改"></a>4、host修改</h4><p>由于内网站点需要的host可能与公网域名不一致，域名代理支持host修改功能，即修改request的header中的host字段。</p>
+<p>在web管理中设置</p>
+<h4 id="5、自定义header"><a href="#5、自定义header" class="headerlink" title="5、自定义header"></a>5、自定义header</h4><p>支持对header进行新增或者修改，以配合服务的需要。</p>
+<h4 id="6、404页面配置"><a href="#6、404页面配置" class="headerlink" title="6、404页面配置"></a>6、404页面配置</h4><p>支持域名解析模式的自定义404页面，修改/web/static/page/error.html中内容即可，暂不支持静态文件等内容。</p>
+<h4 id="7、流量限制"><a href="#7、流量限制" class="headerlink" title="7、流量限制"></a>7、流量限制</h4><p>支持客户端级流量限制，当该客户端入口流量与出口流量达到设定的总量后会拒绝服务，域名代理会返回404页面，其他会拒绝连接。</p>
+<h4 id="8、带宽限制"><a href="#8、带宽限制" class="headerlink" title="8、带宽限制"></a>8、带宽限制</h4><p>支持客户端级带宽限制，带宽计算方式为入口和出口总和，权重均衡。</p>
+<h4 id="9、负载均衡"><a href="#9、负载均衡" class="headerlink" title="9、负载均衡"></a>9、负载均衡</h4><p>本代理支持域名解析模式的负载均衡，在web域名添加或者编辑中内网目标分行填写多个目标即可实现轮训级别的负载均衡。</p>
+<h4 id="10、守护进程"><a href="#10、守护进程" class="headerlink" title="10、守护进程"></a>10、守护进程</h4><p>本代理支持守护进程，使用示例如下，服务端客户端所有模式通用，支持linux、darwin、windows。</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs coq">./(nps|<span class="hljs-type">npc</span>) start|<span class="hljs-type">stop</span>|<span class="hljs-type">restart</span>|<span class="hljs-type">status</span> 若有其他参数可加其他参数<br>(nps|<span class="hljs-type">npc</span>).exe start|<span class="hljs-type">stop</span>|<span class="hljs-type">restart</span>|<span class="hljs-type">status</span> 若有其他参数可加其他参数<br></code></pre></td></tr></table></figure>
+<h4 id="11、KCP协议支持"><a href="#11、KCP协议支持" class="headerlink" title="11、KCP协议支持"></a>11、KCP协议支持</h4><p>KCP是一个快速可靠协议，能以比TCP浪费10%-20%的带宽的代价，换取平均延迟降低30%-40%，在弱网环境下对性能能有一定的提升。可在app.conf中修改bridgeType为kcp。</p>
+<p>当服务端为kcp时，客户端连接时也需要加上参数-type=kcp。</p>
+<p>该工具很强大，更多的使用可以自行研究</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">内网穿透</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/02/19/VPS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E8%84%9A%E6%9C%AC/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">VPS服务器性能测试脚本</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/18/MarkDown%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/">
+                        <span class="hidden-mobile">MarkDown简单用法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "glYUMlWRKXEjw3OeqcDDTv9P-gzGzoHsz",
+          app_key: "tSIHHyoyQELmnHfrpSpoBaFc",
+          placeholder: "快来评论吧~",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+      <div> <p><a target="_blank" rel="noopener external nofollow noreferrer" href="/sitemap.xml" data-pjax-state="">Sitemap</a>  | <a target="_blank" rel="noopener external nofollow noreferrer" href="/baidusitemap.xml" data-pjax-state="">百度Sitemap</a>  </p> <p>本站使用 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/fluid-dev/hexo-theme-fluid" data-pjax-state="">Fluid</a> 作为主题 |  由 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/zh-cn/" data-pjax-state="">Hexo</a> 强力驱动 |  由 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com" data-pjax-state="">Github</a> &amp;  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://vercel.com/" data-pjax-state="">Vercel</a> 托管</p> </div> <a href="https://myquicklinks.vercel.app/" target="blank" title="快链-友链接力"> <img src="https://cdn.jsdelivr.net/gh/muzihuaner/QuickLinks@main/assets/QuickLinks.gif" srcset="/img/loading.gif" alt="快链-友链接力" width="120"> </a><br> 萌ICP备 <a href="https://icp.gov.moe/?keyword=20219946" target="_blank"> 20219946号</a> <br><div class="copyright"> <p><a target="_blank" rel="noopener" href="http://52hg.3vfree.com">Copyright © 2021 欢哥科技</a></p> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- 51.la Analytics -->
+    <script defer type="text/javascript" src="//js.users.51.la/21062591.js"></script>
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
