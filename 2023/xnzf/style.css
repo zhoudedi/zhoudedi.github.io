@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+/* 电脑 */
+@media screen and (orientation: landscape) {
+    .all {
+        width: 100vw;
+        height: 100vh;
+        background-color: pink;
+        
+    }
+    .names {
+        font-size: 45px;
+    }
+    #zhuf {
+        font-size: 40px;
+    }
+    .button div {
+        font-size: 36px;
+    }
+    .bottom .img .name {
+        font-size: 4vh;
+    }
+}
+/* 手机 */
+@media screen and (orientation: portrait) {
+    .all {
+        transform: rotate(90deg);
+        transform-origin: bottom left;
+        position: absolute;
+        top: -100vw;
+        left: 0;
+        width: 100vh;
+        height: 100vw;
+    }
+    .names {
+        font-size: 25px;
+    }
+    #zhuf {
+        font-size: 20px;
+    }
+    .button div {
+        font-weight: 600;
+        font-size: 10px;
+    }
+    .bottom .img .name {
+        font-size: 4vw;
+    }
+}
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#jiyu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    color: #fff;
+}
+#zhuf {
+    margin-top: 20px;
+    text-align: center;
+}
+.cover {
+    position: absolute;
+    z-index: 18;
+    width: 100%;
+    height: 100%;
+    background-color: #fbd9e1;
+}
+.top {
+    position: absolute;
+    z-index: 33;
+    width: 100%;
+    height: 100%;
+    transition: all 2.0s;
+}
+.top img {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    height: 100%;
+}
+.button {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%);
+    z-index: 33;
+    width: 20%;
+    height: 16%;
+}
+.button div {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #f4577b;
+    text-align: center;
+}
+.bottom {
+    position: absolute;
+    z-index: 30;
+    width: 100%;
+    height: 100%;
+    background-color: #fbd9e1;
+    transition: all 2.0s;
+}
+.bottom .img {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    height: 100%;
+}
+.bottom .img .bgi {
+    height: 100%;
+}
+.bottom .img .head {
+    position: absolute;
+    top: 32%;
+    left: 15%;
+    height: 44%;
+    border-radius: 50%;
+}
+.bottom .img .name {
+    position: absolute;
+    top: 61%;
+    left: 65%;
+    font-family: "宋体";
+    font-weight: 600;
+    color: #f67290;
+}
+
+.tran {
+    transform: translateY(-100%);
+}
+.trans {
+    transform: translateY(100%);
+}
