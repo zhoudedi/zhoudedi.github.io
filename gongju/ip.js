@@ -16,5 +16,4 @@ async function loadResortName() {
 /*使用：
 1、导入js文件    <script src='./ip.js'></script>
 2、在html添加对应ID   您的IP：<span id="ip"></span> &nbsp; 位置：<span id="ipwz"></span>
-
 */
