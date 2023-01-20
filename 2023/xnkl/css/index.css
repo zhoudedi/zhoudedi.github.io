@@ -335,7 +335,6 @@ canvas {
     display: inline-block;
     position: absolute;
     top: 60%;
-    left: 10%;
 }
 
 .gold-text:before {
