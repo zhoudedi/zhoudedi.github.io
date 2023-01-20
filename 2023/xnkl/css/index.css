@@ -329,12 +329,13 @@ canvas {
 
 .gold-text {
     font-size: 42px;
-    letter-spacing: 10px;
+    letter-spacing: 5px;
     white-space: nowrap;
     color: transparent;
     display: inline-block;
     position: absolute;
     top: 60%;
+    left: 3%;
 }
 
 .gold-text:before {
